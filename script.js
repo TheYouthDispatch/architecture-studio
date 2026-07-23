@@ -1,241 +1,129 @@
-let scene;
-let camera;
-let renderer;
+// ========================================
+// Architecture Studio UI
+// Version 1
+// ========================================
 
-let house;
+let currentTool = "Walls";
 
+const sidebarButtons = document.querySelectorAll(".sidebar button");
+const footerButtons = document.querySelectorAll("footer button");
+const propertyTitle = document.querySelector(".properties h3");
+const saveButton = document.querySelector(".gold");
 
+// ----------------------------
+// Sidebar Tool Selection
+// ----------------------------
 
-function init(){
+sidebarButtons.forEach(button => {
 
+    button.addEventListener("click", () => {
 
-scene = new THREE.Scene();
+        sidebarButtons.forEach(btn => {
+            btn.classList.remove("active-tool");
+        });
 
-scene.background = new THREE.Color(0x222222);
+        button.classList.add("active-tool");
 
+        currentTool = button.textContent.trim();
 
+        propertyTitle.textContent = currentTool + " Properties";
 
-camera = new THREE.PerspectiveCamera(
-45,
-window.innerWidth/600,
-0.1,
-1000
-);
+        console.log("Selected:", currentTool);
 
+    });
 
-camera.position.set(
-5,
-5,
-8
-);
-
-
-
-renderer = new THREE.WebGLRenderer({
-antialias:true
 });
 
+// Make Walls selected on startup
+sidebarButtons[0].classList.add("active-tool");
 
-renderer.setSize(
-window.innerWidth,
-600
-);
+// ----------------------------
+// Bottom Toolbar
+// ----------------------------
 
+footerButtons.forEach(button => {
 
-document
-.getElementById("scene")
-.appendChild(renderer.domElement);
+    button.addEventListener("click", () => {
 
+        footerButtons.forEach(btn => {
+            btn.classList.remove("active-bottom");
+        });
 
+        button.classList.add("active-bottom");
 
+        console.log("Mode:", button.textContent);
 
-// lighting
+    });
 
-let light = new THREE.DirectionalLight(
-0xffffff,
-1
-);
-
-light.position.set(
-5,
-10,
-5
-);
-
-scene.add(light);
-
-
-
-let ambient = new THREE.AmbientLight(
-0xffffff,
-0.5
-);
-
-scene.add(ambient);
-
-
-
-// ground
-
-let groundGeometry =
-new THREE.PlaneGeometry(
-20,
-20
-);
-
-
-let groundMaterial =
-new THREE.MeshStandardMaterial({
-color:0x555555
 });
 
+footerButtons[0].classList.add("active-bottom");
 
-let ground =
-new THREE.Mesh(
-groundGeometry,
-groundMaterial
-);
+// ----------------------------
+// Save Button
+// ----------------------------
 
+saveButton.addEventListener("click", () => {
 
-ground.rotation.x =
--Math.PI/2;
+    alert("Project saved! (placeholder)");
 
-
-scene.add(ground);
-
-
-
-createHouse();
-
-
-animate();
-
-
-}
-
-
-
-function createHouse(){
-
-
-let body =
-new THREE.BoxGeometry(
-2,
-1.5,
-2
-);
-
-
-let material =
-new THREE.MeshStandardMaterial({
-color:0xffffff
 });
 
+// ----------------------------
+// Undo / Redo
+// ----------------------------
 
-house =
-new THREE.Mesh(
-body,
-material
-);
+const topButtons = document.querySelectorAll(".top-buttons button");
 
-
-house.position.y=.75;
-
-
-scene.add(house);
-
-
-
-// roof
-
-let roof =
-new THREE.ConeGeometry(
-1.7,
-1,
-4
-);
-
-
-let roofMaterial =
-new THREE.MeshStandardMaterial({
-color:0x8b4513
+topButtons[0].addEventListener("click", () => {
+    alert("Undo (coming soon)");
 });
 
+topButtons[1].addEventListener("click", () => {
+    alert("Redo (coming soon)");
+});
 
-let roofMesh =
-new THREE.Mesh(
-roof,
-roofMaterial
-);
+// ----------------------------
+// Delete Button
+// ----------------------------
 
+const deleteButton = document.querySelector(".delete");
 
-roofMesh.position.y=2;
+deleteButton.addEventListener("click", () => {
 
+    alert("Delete selected object (coming soon)");
 
-roofMesh.rotation.y=Math.PI/4;
+});
 
+// ----------------------------
+// Property Controls
+// ----------------------------
 
-scene.add(roofMesh);
+const colorPicker = document.querySelector("input[type='color']");
+const sliders = document.querySelectorAll("input[type='range']");
+const material = document.querySelector("select");
 
+colorPicker.addEventListener("input", () => {
 
+    console.log("Color:", colorPicker.value);
 
-}
+});
 
+material.addEventListener("change", () => {
 
+    console.log("Material:", material.value);
 
+});
 
-function addHouse(){
+sliders.forEach(slider => {
 
+    slider.addEventListener("input", () => {
 
-let newHouse =
-house.clone();
+        console.log(slider.value);
 
+    });
 
-newHouse.position.x =
-Math.random()*6-3;
-
-
-scene.add(newHouse);
-
-
-}
-
-
-
-function changeMaterial(){
-
-
-house.material.color.set(
-Math.random()*0xffffff
-);
-
-
-}
-
-
-
-function resetScene(){
-
-location.reload();
-
-}
-
-
-
-function animate(){
-
-requestAnimationFrame(
-animate
-);
-
-
-renderer.render(
-scene,
-camera
-);
-
-
-}
+});
 
 
 
