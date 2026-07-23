@@ -9,84 +9,159 @@
 
 <link rel="stylesheet" href="style.css">
 
-</head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
 
 <body>
 
+<!-- TOP BAR -->
+
 <header>
 
-<h1>ARCHITECTURE STUDIO</h1>
+<div class="logo">
 
-<p>Design. Build. Imagine.</p>
+<h2>Architecture Studio</h2>
+
+</div>
+
+<div class="top-buttons">
+
+<button>Undo</button>
+
+<button>Redo</button>
+
+<button class="gold">Save</button>
+
+</div>
 
 </header>
 
 
 
-<div class="toolbar">
 
-<button onclick="addHouse()">
-Add House
+
+<!-- MAIN -->
+
+<div class="container">
+
+
+
+
+<!-- LEFT TOOLBAR -->
+
+<aside class="sidebar">
+
+<h3>Build</h3>
+
+<button>🧱 Walls</button>
+
+<button>🚪 Doors</button>
+
+<button>🪟 Windows</button>
+
+<button>🏠 Roofs</button>
+
+<button>🪵 Floors</button>
+
+<button>🪜 Stairs</button>
+
+<button>🪑 Furniture</button>
+
+<button>🌳 Landscaping</button>
+
+<button>💡 Lighting</button>
+
+</aside>
+
+
+
+
+
+<!-- 3D BUILD AREA -->
+
+<main class="viewport">
+
+<div class="grid">
+
+<h1>3D Build View</h1>
+
+<p>Your Three.js world will appear here.</p>
+
+</div>
+
+</main>
+
+
+
+
+
+<!-- RIGHT PANEL -->
+
+<aside class="properties">
+
+<h3>Properties</h3>
+
+<label>Material</label>
+
+<select>
+
+<option>Brick</option>
+
+<option>Concrete</option>
+
+<option>Wood</option>
+
+<option>Glass</option>
+
+</select>
+
+<label>Color</label>
+
+<input type="color">
+
+<label>Rotation</label>
+
+<input type="range">
+
+<label>Height</label>
+
+<input type="range">
+
+<button class="delete">
+
+Delete Object
+
 </button>
 
-<button onclick="changeMaterial()">
-Change Material
-</button>
-
-<button onclick="resetScene()">
-Reset
-</button>
-
+</aside>
 
 </div>
 
 
 
-<div id="scene"></div>
 
 
+<!-- BOTTOM BAR -->
 
-<section class="info">
+<footer>
 
-<h2>Create Your Neighborhood</h2>
+<button>Move</button>
 
-<p>
-Design homes, experiment with layouts,
-and learn how architecture affects communities.
-</p>
+<button>Rotate</button>
 
+<button>Resize</button>
 
-<div class="cards">
+<button>Paint</button>
 
-<div>
-<h3>Walkability</h3>
-<p>See how designs affect movement.</p>
-</div>
+<button>Duplicate</button>
 
+<button>Delete</button>
 
-<div>
-<h3>Housing</h3>
-<p>Experiment with different homes.</p>
-</div>
-
-
-<div>
-<h3>Transportation</h3>
-<p>Create connected communities.</p>
-</div>
-
-</div>
-
-</section>
-
-
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
-<script src="script.js"></script>
-
+</footer>
 
 </body>
 </html>
